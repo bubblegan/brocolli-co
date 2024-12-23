@@ -18,7 +18,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={"antialiased"}>
         <ThemeProvider attribute="class" defaultTheme="dark">
-          <div className="relative flex flex-col h-screen">
+          <div className="relative flex flex-col h-screen max-h-screen">
             <header className="top-0 z-50 w-full border-b bg-background">
               <div className="container flex h-16 items-center">
                 <p className="font-bold text-base">BROCCOLI AND CO.</p>
