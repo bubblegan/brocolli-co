@@ -2,6 +2,8 @@
 
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Button } from "./ui/button";
+import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
+import { DialogDescription, DialogTitle } from "@radix-ui/react-dialog";
 
 export function SuccessDialog(props: {
   isOpen: boolean;
@@ -17,6 +19,9 @@ export function SuccessDialog(props: {
       }}
     >
       <DialogContent className="gap-4">
+        <VisuallyHidden.Root asChild>
+          <DialogTitle>Request Succeeed</DialogTitle>
+        </VisuallyHidden.Root>
         <div className="py-3">
           <p className="text-center text-lg font-semibold">Request Succeed</p>
         </div>
@@ -26,7 +31,15 @@ export function SuccessDialog(props: {
             back to you via email once it is confirmed.
           </p>
         </div>
-        <Button onClick={() => setIsOpen(false)}>Alright!</Button>
+        <Button
+          data-testid="successDialogButton"
+          onClick={() => setIsOpen(false)}
+        >
+          Alright!
+        </Button>
+        <VisuallyHidden.Root>
+          <DialogDescription>Requesting Success Message</DialogDescription>
+        </VisuallyHidden.Root>
       </DialogContent>
     </Dialog>
   );

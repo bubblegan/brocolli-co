@@ -27,7 +27,7 @@ async function fillInForm({
   await userEvent.type(emailConfirmInput, emailConfirm);
 }
 
-describe("Sign Up Form", () => {
+describe("RequestInvitationForm", () => {
   beforeEach(() => {
     jest.clearAllMocks();
 

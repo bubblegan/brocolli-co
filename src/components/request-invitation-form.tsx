@@ -67,9 +67,7 @@ export function RequestInvitationForm(props: {
         const errorText: { errorMessage: string } = await response.json();
         setErorrMsg(errorText?.errorMessage);
       }
-    } catch (e) {
-      // catching other error like network error, timeout error
-      console.log(e);
+    } catch {
       setErorrMsg("An error occurred. Please try again later");
     }
     setIsPending(false);
