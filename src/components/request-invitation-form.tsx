@@ -1,7 +1,12 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+} from "@/components/ui/dialog";
+import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 import {
   Form,
   FormControl,
@@ -12,12 +17,14 @@ import {
 import { Input } from "@/components/ui/input";
 import { signUpSchema } from "@/schema/sign-up-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { DialogTitle } from "@radix-ui/react-dialog";
 import { Loader2 } from "lucide-react";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
+import { invitationRequestUrl } from "@/lib/endpoints";
 
-export function SignUpForm(props: {
+export function RequestInvitationForm(props: {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
   onSuccess: () => void;
@@ -41,22 +48,19 @@ export function SignUpForm(props: {
   ) => {
     try {
       setIsPending(true);
-      const response = await fetch(
-        "https://l94wc2001h.execute-api.ap-southeast-2.amazonaws.com/prod/fake-auth",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            name: data.fullName,
-            email: data.email,
-          }),
-        }
-      );
-
+      const response = await fetch(invitationRequestUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: data.fullName,
+          email: data.email,
+        }),
+      });
       if (response.ok) {
         setIsOpen(false);
+        setErorrMsg("");
         form.reset();
         onSuccess();
       } else {
@@ -78,7 +82,10 @@ export function SignUpForm(props: {
         setIsOpen(open);
       }}
     >
-      <DialogContent>
+      <DialogContent aria-describedby="Request for invitation form">
+        <VisuallyHidden.Root asChild>
+          <DialogTitle>Request Invitation Form</DialogTitle>
+        </VisuallyHidden.Root>
         <div className="py-3">
           <p className="text-center text-lg font-semibold">
             Request For Invitation
@@ -95,7 +102,11 @@ export function SignUpForm(props: {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Input placeholder="Full name" {...field} />
+                    <Input
+                      data-testid={"fullNameInput"}
+                      placeholder="Full name"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -107,7 +118,11 @@ export function SignUpForm(props: {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Input placeholder="Email" {...field} />
+                    <Input
+                      data-testid={"emailInput"}
+                      placeholder="Email"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -119,7 +134,11 @@ export function SignUpForm(props: {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Input placeholder="Email Confirmation" {...field} />
+                    <Input
+                      data-testid={"emailConfirmInput"}
+                      placeholder="Email Confirmation"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -131,13 +150,23 @@ export function SignUpForm(props: {
               </div>
             )}
             <div className="flex w-full flex-row-reverse gap-2">
-              <Button disabled={isPending} className="w-fit" type="submit">
+              <Button
+                data-testid={"requestInvitationButton"}
+                disabled={isPending}
+                className="w-fit"
+                type="submit"
+              >
                 {isPending && <Loader2 className="animate-spin" />}{" "}
                 {isPending ? "Requesting..." : "Request"}
               </Button>
             </div>
           </form>
         </Form>
+        <VisuallyHidden.Root>
+          <DialogDescription>
+            Requesting invitation form for broccoli co service
+          </DialogDescription>
+        </VisuallyHidden.Root>
       </DialogContent>
     </Dialog>
   );

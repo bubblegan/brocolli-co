@@ -26,7 +26,7 @@ export function SuccessDialog(props: {
             back to you via email once it is confirmed.
           </p>
         </div>
-        <Button onClick={() => setIsOpen(false)}>Alright</Button>
+        <Button onClick={() => setIsOpen(false)}>Alright!</Button>
       </DialogContent>
     </Dialog>
   );

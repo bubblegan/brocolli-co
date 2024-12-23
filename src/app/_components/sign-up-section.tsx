@@ -1,6 +1,6 @@
 "use client";
 
-import { SignUpForm } from "@/components/sign-up-form";
+import { RequestInvitationForm } from "@/components/request-invitation-form";
 import { SuccessDialog } from "@/components/success-dialog";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
@@ -18,7 +18,7 @@ export function SignUpSection() {
       >
         Request For Invitation
       </Button>
-      <SignUpForm
+      <RequestInvitationForm
         isOpen={isSignUpFormOpen}
         setIsOpen={setIsSignUpFormOpen}
         onSuccess={() => {
