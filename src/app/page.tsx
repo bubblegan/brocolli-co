@@ -2,7 +2,7 @@ import { RequestInvitationSection } from "./_components/request-invitation-secti
 
 export default function Home() {
   return (
-    <main className=" h-full px-4 md:px-0 md:pb-0 pb-12 flex flex-col gap-6 items-center justify-center container">
+    <main className=" h-full px-4 md:px-0 flex flex-col gap-6 items-center justify-center container">
       <h1 className="text-4xl font-bold text-center">
         A Better Way To Enjoy Broccoli
       </h1>
