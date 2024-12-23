@@ -5,7 +5,7 @@
 ### Next.js
 
 - I chose this framework because the website needs to have good SEO, being a public-facing online service company. Using Next.js enables server-side rendering (SSR), which improves SEO by making the content and meta data crawlable by search engines like Google.
-- SSR also improves the **First Contentful Paint (FCP)** since the main `<h1>` tag is rendered on the server.
+- SSR also improves the **First Contentful Paint (FCP)** since the main content is rendered on the server.
 - I hosted the site, and it demonstrates good performance metrics.
 
 ### ShadCN + Radix UI + Tailwind CSS
