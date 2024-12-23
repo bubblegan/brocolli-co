@@ -15,11 +15,11 @@
 
 ### React Hook Form
 
-- I used this library to build the `<InvitationRequestForm>` taking advantage of its simplicity and efficiency in managing form state and validation.
+- I used this library to build the `<RequestInvitationForm>` taking advantage of its simplicity and efficiency in managing form state and validation.
 
 ### Unit Testing
 
-- I focused on writing tests for the `<InvitationRequestForm>` since it is the most frequently used feature by users.
+- I focused on writing tests for the `<RequestInvitationForm>` since it is the most frequently used feature by users.
 - Additionally, I wrote tests for the **validation schema** to ensure data constraints are consistently enforced.
 
 ## Development
