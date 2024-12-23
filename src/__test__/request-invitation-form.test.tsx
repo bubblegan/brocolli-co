@@ -9,6 +9,24 @@ import { invitationRequestUrl } from "@/lib/endpoints";
 const mockSetIsOpen = jest.fn();
 const mockOnSuccess = jest.fn();
 
+async function fillInForm({
+  fullName,
+  email,
+  emailConfirm,
+}: {
+  fullName: string;
+  email: string;
+  emailConfirm: string;
+}) {
+  const fullNameInput = screen.getByTestId("fullNameInput");
+  const emailInput = screen.getByTestId("emailInput");
+  const emailConfirmInput = screen.getByTestId("emailConfirmInput");
+
+  await userEvent.type(fullNameInput, fullName);
+  await userEvent.type(emailInput, email);
+  await userEvent.type(emailConfirmInput, emailConfirm);
+}
+
 describe("Sign Up Form", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -22,25 +40,25 @@ describe("Sign Up Form", () => {
     );
   });
 
-  it("it should render form when isOpen set to true", async () => {
+  it("should fill in the form and able to submit if all input are valid", async () => {
     global.fetch = jest.fn().mockResolvedValue({
       ok: true,
       json: async () => ({}),
     });
 
-    const fullNameInput = screen.getByTestId("fullNameInput");
-    const emailInput = screen.getByTestId("emailInput");
-    const emailConfirmInput = screen.getByTestId("emailConfirmInput");
+    const fullName = "Gan Sheng";
+    const email = "ganshenghong@example.com";
 
-    await userEvent.type(fullNameInput, "Gan Sheng");
-    await userEvent.type(emailInput, "ganshenghong@example.com");
-    await userEvent.type(emailConfirmInput, "ganshenghong@example.com");
+    await fillInForm({
+      fullName,
+      email,
+      emailConfirm: email,
+    });
 
     const submitButton = screen.getByTestId("requestInvitationButton");
     fireEvent.click(submitButton);
 
     await waitFor(() => {
-      // Expect fetch to have been called with correct payload
       expect(global.fetch).toHaveBeenCalledTimes(1);
       expect(global.fetch).toHaveBeenCalledWith(
         invitationRequestUrl,
@@ -48,60 +66,55 @@ describe("Sign Up Form", () => {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            name: "Gan Sheng",
-            email: "ganshenghong@example.com",
+            name: fullName,
+            email: email,
           }),
         })
       );
+      expect(mockOnSuccess).toHaveBeenCalled();
+      expect(mockSetIsOpen).toHaveBeenCalled();
     });
   });
 
-  it("shows an error message when the API call fails (non-OK status)", async () => {
+  it("should shows error message when the API call fails (non-OK status)", async () => {
     global.fetch = jest.fn().mockResolvedValue({
       ok: false,
       json: async () => ({ errorMessage: "Email already in use" }),
     });
 
-    // Render the SignUpForm with isOpen = true
+    const fullName = "Gan Sheng";
+    const email = "ganshenghong@example.com";
 
-    const fullNameInput = screen.getByTestId("fullNameInput");
-    const emailInput = screen.getByTestId("emailInput");
-    const emailConfirmInput = screen.getByTestId("emailConfirmInput");
+    await fillInForm({
+      fullName,
+      email,
+      emailConfirm: email,
+    });
 
-    await userEvent.type(fullNameInput, "Gan Sheng");
-    await userEvent.type(emailInput, "ganshenghong@example.com");
-    await userEvent.type(emailConfirmInput, "ganshenghong@example.com");
-
-    // Submit
     const submitButton = screen.getByTestId("requestInvitationButton");
     fireEvent.click(submitButton);
 
-    // Check that fetch was called
     await waitFor(() => {
       expect(global.fetch).toHaveBeenCalledTimes(1);
     });
 
-    // Because it's an error response:
     expect(mockSetIsOpen).not.toHaveBeenCalled();
     expect(mockOnSuccess).not.toHaveBeenCalled();
 
-    // The component should display the returned error
+    // error message was shown
     expect(screen.getByText("Email already in use")).toBeInTheDocument();
   });
 
-  it("should not call API when there is error within the form and press submit", async () => {
-    global.fetch = jest.fn().mockResolvedValue({
-      ok: false,
-      json: async () => ({ errorMessage: "Email already in use" }),
+  it("should not call API when the form is invalidated", async () => {
+    // full name is shorter than 2 characters
+    const fullName = "g";
+    const email = "ganshenghong@example.com";
+
+    await fillInForm({
+      fullName,
+      email,
+      emailConfirm: email,
     });
-
-    const fullNameInput = screen.getByTestId("fullNameInput");
-    const emailInput = screen.getByTestId("emailInput");
-    const emailConfirmInput = screen.getByTestId("emailConfirmInput");
-
-    await userEvent.type(fullNameInput, "a");
-    await userEvent.type(emailInput, "ganshenghong@example.com");
-    await userEvent.type(emailConfirmInput, "ganshenghong@example.com");
 
     const submitButton = screen.getByTestId("requestInvitationButton");
     fireEvent.click(submitButton);
@@ -109,5 +122,8 @@ describe("Sign Up Form", () => {
     await waitFor(() => {
       expect(global.fetch).not.toHaveBeenCalled();
     });
+
+    expect(mockSetIsOpen).not.toHaveBeenCalled();
+    expect(mockOnSuccess).not.toHaveBeenCalled();
   });
 });

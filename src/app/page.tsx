@@ -1,8 +1,8 @@
-import { SignUpSection } from "./_components/sign-up-section";
+import { RequestInvitationSection } from "./_components/request-invitation-section";
 
 export default function Home() {
   return (
-    <main className="max-h-screen h-full px-4 md:px-0 md:pb-0 pb-12 flex flex-col gap-6 items-center justify-center container">
+    <main className=" h-full px-4 md:px-0 md:pb-0 pb-12 flex flex-col gap-6 items-center justify-center container">
       <h1 className="text-4xl font-bold text-center">
         A Better Way To Enjoy Broccoli
       </h1>
@@ -10,7 +10,7 @@ export default function Home() {
         Broccoli & Co. is an upcoming online service company. Deliver fresh
         broccoli to you doorstep in just 2 days.
       </p>
-      <SignUpSection />
+      <RequestInvitationSection />
     </main>
   );
 }

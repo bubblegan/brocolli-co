@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const signUpSchema = z
+export const invitationSchema = z
   .object({
     fullName: z
       .string()

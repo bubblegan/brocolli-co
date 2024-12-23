@@ -15,7 +15,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { signUpSchema } from "@/schema/sign-up-schema";
+import { invitationSchema } from "@/schema/invitation-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { DialogTitle } from "@radix-ui/react-dialog";
 import { Loader2 } from "lucide-react";
@@ -34,8 +34,8 @@ export function RequestInvitationForm(props: {
   const [isPending, setIsPending] = useState(false);
   const [errorMsg, setErorrMsg] = useState("");
 
-  const form = useForm<z.infer<typeof signUpSchema>>({
-    resolver: zodResolver(signUpSchema),
+  const form = useForm<z.infer<typeof invitationSchema>>({
+    resolver: zodResolver(invitationSchema),
     defaultValues: {
       fullName: "",
       email: "",
@@ -43,7 +43,7 @@ export function RequestInvitationForm(props: {
     },
   });
 
-  const onSubmit: SubmitHandler<z.infer<typeof signUpSchema>> = async (
+  const onSubmit: SubmitHandler<z.infer<typeof invitationSchema>> = async (
     data
   ) => {
     try {
@@ -64,7 +64,7 @@ export function RequestInvitationForm(props: {
         form.reset();
         onSuccess();
       } else {
-        const errorText = await response.json();
+        const errorText: { errorMessage: string } = await response.json();
         setErorrMsg(errorText?.errorMessage);
       }
     } catch (e) {

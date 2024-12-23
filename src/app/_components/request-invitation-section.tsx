@@ -5,22 +5,22 @@ import { SuccessDialog } from "@/components/success-dialog";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
-export function SignUpSection() {
-  const [isSignUpFormOpen, setIsSignUpFormOpen] = useState(false);
+export function RequestInvitationSection() {
+  const [isInvitationFormOpen, setIsInvitationFormOpen] = useState(false);
   const [isSuccessAlertOpen, setIsSuccessAlertOpen] = useState(false);
 
   return (
-    <div>
+    <section>
       <Button
         className="text-base"
         size={"lg"}
-        onClick={() => setIsSignUpFormOpen(true)}
+        onClick={() => setIsInvitationFormOpen(true)}
       >
         Request For Invitation
       </Button>
       <RequestInvitationForm
-        isOpen={isSignUpFormOpen}
-        setIsOpen={setIsSignUpFormOpen}
+        isOpen={isInvitationFormOpen}
+        setIsOpen={setIsInvitationFormOpen}
         onSuccess={() => {
           setIsSuccessAlertOpen(true);
         }}
@@ -29,6 +29,6 @@ export function SignUpSection() {
         isOpen={isSuccessAlertOpen}
         setIsOpen={setIsSuccessAlertOpen}
       />
-    </div>
+    </section>
   );
 }

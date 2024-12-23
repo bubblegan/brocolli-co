@@ -1,23 +1,11 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import { ThemeProvider } from "next-themes";
 import "./globals.css";
-
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
 
 export const metadata: Metadata = {
   title: "BROCCOLI AND CO.",
   description:
-    " Broccoli & Co. is an upcoming online service company. Empowering everyday life through seamless online services",
+    "Broccoli & Co. is an upcoming online service company. Empowering everyday life through seamless online services",
 };
 
 export default function RootLayout({
@@ -28,9 +16,7 @@ export default function RootLayout({
   const currentYear = new Date().getFullYear();
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={"antialiased"}>
         <ThemeProvider attribute="class" defaultTheme="dark">
           <div className="relative flex flex-col h-screen">
             <header className="top-0 z-50 w-full border-b bg-background">
