@@ -4,7 +4,7 @@
 
 ### Next.js
 
-- I chose this framework because the website needs to have good SEO, being a public-facing online service company. Using Next.js enables server-side rendering (SSR), which improves SEO by making the content crawlable by search engines like Google.
+- I chose this framework because the website needs to have good SEO, being a public-facing online service company. Using Next.js enables server-side rendering (SSR), which improves SEO by making the content and meta data crawlable by search engines like Google.
 - SSR also improves the **First Contentful Paint (FCP)** since the main `<h1>` tag is rendered on the server.
 - I hosted the site, and it demonstrates good performance metrics.
 
@@ -15,11 +15,11 @@
 
 ### React Hook Form
 
-- I used this library to build the **invitation request form**, taking advantage of its simplicity and efficiency in managing form state and validation.
+- I used this library to build the `<InvitationRequestForm>` taking advantage of its simplicity and efficiency in managing form state and validation.
 
 ### Unit Testing
 
-- I focused on writing tests for the **InvitationRequestForm** since it is the most frequently used feature by users.
+- I focused on writing tests for the `<InvitationRequestForm>` since it is the most frequently used feature by users.
 - Additionally, I wrote tests for the **validation schema** to ensure data constraints are consistently enforced.
 
 ## Development
