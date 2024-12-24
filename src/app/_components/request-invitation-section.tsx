@@ -12,6 +12,7 @@ export function RequestInvitationSection() {
   return (
     <section>
       <Button
+        data-testid="requestInvitationButton"
         className="text-base"
         size={"lg"}
         onClick={() => setIsInvitationFormOpen(true)}

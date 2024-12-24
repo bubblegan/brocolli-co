@@ -1,31 +1,13 @@
 // DialogForm.test.tsx
 import React from "react";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
 import { RequestInvitationForm } from "@/components/request-invitation-form";
 import { invitationRequestUrl } from "@/lib/endpoints";
+import { fillInvitationForm } from "./utils/fill-invitation-form";
 
 const mockSetIsOpen = jest.fn();
 const mockOnSuccess = jest.fn();
-
-async function fillInForm({
-  fullName,
-  email,
-  emailConfirm,
-}: {
-  fullName: string;
-  email: string;
-  emailConfirm: string;
-}) {
-  const fullNameInput = screen.getByTestId("fullNameInput");
-  const emailInput = screen.getByTestId("emailInput");
-  const emailConfirmInput = screen.getByTestId("emailConfirmInput");
-
-  await userEvent.type(fullNameInput, fullName);
-  await userEvent.type(emailInput, email);
-  await userEvent.type(emailConfirmInput, emailConfirm);
-}
 
 describe("RequestInvitationForm", () => {
   beforeEach(() => {
@@ -49,13 +31,13 @@ describe("RequestInvitationForm", () => {
     const fullName = "Gan Sheng";
     const email = "ganshenghong@example.com";
 
-    await fillInForm({
+    await fillInvitationForm({
       fullName,
       email,
       emailConfirm: email,
     });
 
-    const submitButton = screen.getByTestId("requestInvitationButton");
+    const submitButton = screen.getByTestId("requestInvitationSubmitButton");
     fireEvent.click(submitButton);
 
     await waitFor(() => {
@@ -85,13 +67,13 @@ describe("RequestInvitationForm", () => {
     const fullName = "Gan Sheng";
     const email = "ganshenghong@example.com";
 
-    await fillInForm({
+    await fillInvitationForm({
       fullName,
       email,
       emailConfirm: email,
     });
 
-    const submitButton = screen.getByTestId("requestInvitationButton");
+    const submitButton = screen.getByTestId("requestInvitationSubmitButton");
     fireEvent.click(submitButton);
 
     await waitFor(() => {
@@ -110,13 +92,13 @@ describe("RequestInvitationForm", () => {
     const fullName = "g";
     const email = "ganshenghong@example.com";
 
-    await fillInForm({
+    await fillInvitationForm({
       fullName,
       email,
       emailConfirm: email,
     });
 
-    const submitButton = screen.getByTestId("requestInvitationButton");
+    const submitButton = screen.getByTestId("requestInvitationSubmitButton");
     fireEvent.click(submitButton);
 
     await waitFor(() => {

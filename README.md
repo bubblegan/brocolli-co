@@ -38,8 +38,6 @@
    npm run dev
    ```
 
----
-
 ## Production Build
 
 ### Build Steps
@@ -62,16 +60,22 @@
    npm run start
    ```
 
----
-
 ## Testing
 
-### E2E Test
+Both e2e test and unit test are located in `/test` folder.
 
-1. Run the following command for Jest test:
+### Unit Test
 
-   ```bash
-   npm run test
-   ```
+Run the following command for Jest test:
 
----
+```bash
+npm run test
+```
+
+### E2e Test
+
+Run the following command for e2e test:
+
+```bash
+npm run build-and-test
+```

@@ -75,6 +75,7 @@ export function RequestInvitationForm(props: {
 
   return (
     <Dialog
+      data-testid="requestInvitationDialog"
       open={isOpen}
       onOpenChange={(open) => {
         setIsOpen(open);
@@ -143,13 +144,16 @@ export function RequestInvitationForm(props: {
               )}
             />
             {errorMsg && (
-              <div className="border border-destructive p-2 bg-red-100 rounded-sm">
+              <div
+                data-testId="invitationFormError"
+                className="border border-destructive p-2 bg-red-100 rounded-sm"
+              >
                 <p className="text-destructive">{errorMsg}</p>
               </div>
             )}
             <div className="flex w-full flex-row-reverse gap-2">
               <Button
-                data-testid={"requestInvitationButton"}
+                data-testid={"requestInvitationSubmitButton"}
                 disabled={isPending}
                 className="w-fit"
                 type="submit"
