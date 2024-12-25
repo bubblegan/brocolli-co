@@ -6,7 +6,7 @@
 
 - I chose this framework because the website needs to have good SEO, being a public-facing online service company. Using Next.js enables server-side rendering (SSR), which improves SEO by making the content and meta data crawlable by search engines like Google.
 - SSR also improves the **First Contentful Paint (FCP)** since the main content is rendered on the server.
-- I hosted the site, and it demonstrates good performance metrics.
+- I hosted the site, and it demonstrates [good performance metrics](#Appendix).
 
 ### ShadCN + Radix UI + Tailwind CSS
 
@@ -80,3 +80,13 @@ Run the following command for e2e test:
 ```bash
 npm run e2e
 ```
+
+## Appendix
+
+<img width="441" alt="Screenshot 2024-12-25 at 9 58 34 AM" src="https://github.com/user-attachments/assets/6bf36228-eae3-4c90-b5c4-14ece44f2a73" />
+
+<img width="617" alt="Screenshot 2024-12-25 at 9 58 50 AM" src="https://github.com/user-attachments/assets/646d9d41-d0cf-4e2f-b2c9-4f34c0de0dd5" />
+
+
+
+
