@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "test": "jest --testPathIgnorePatterns=e2e/",
-    "build-and-test": "npm run build && concurrently \"npm run start\" \"wait-on http://localhost:3000 && npx playwright test\" --kill-others"
+    "e2e": "npm run build && concurrently \"npm run start\" \"wait-on http://localhost:3000 && npx playwright test\" --kill-others"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",

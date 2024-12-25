@@ -13,14 +13,15 @@
 - I selected this UI library because it is more stable and lightweight compared to other UI libraries.
 - It also allows for rapid prototyping, which speeds up the development process.
 
-### React Hook Form
+### React Hook Form + Zod
 
-- I used this library to build the `<RequestInvitationForm>` taking advantage of its simplicity and efficiency in managing form state and validation.
+- I used these library to build the `<RequestInvitationForm>` taking advantage of its simplicity and efficiency in managing form state and validation.
 
-### Unit Testing
+### Unit Testing + E2E testing
 
 - I focused on writing tests for the `<RequestInvitationForm>` since it is the most frequently used feature by users.
 - Additionally, I wrote tests for the **validation schema** to ensure data constraints are consistently enforced.
+- Used Playwright to carry out e2e testing for user request submission.
 
 ## Development
 
@@ -77,5 +78,5 @@ npm run test
 Run the following command for e2e test:
 
 ```bash
-npm run build-and-test
+npm run e2e
 ```

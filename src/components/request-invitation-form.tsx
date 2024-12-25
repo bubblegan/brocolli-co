@@ -145,7 +145,7 @@ export function RequestInvitationForm(props: {
             />
             {errorMsg && (
               <div
-                data-testId="invitationFormError"
+                data-testid="invitationFormError"
                 className="border border-destructive p-2 bg-red-100 rounded-sm"
               >
                 <p className="text-destructive">{errorMsg}</p>
